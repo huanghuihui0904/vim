@@ -188,7 +188,15 @@ fill_assert_error(
 	    exp_tv->vval.v_dict = dict_alloc();
 	    got_tv->vval.v_dict = dict_alloc();
 	    if (exp_tv->vval.v_dict == NULL || got_tv->vval.v_dict == NULL)
+	    {
+		if (exp_tv->vval.v_dict != NULL)
+			dict_free(exp_tv->vval.v_dict);
+		if (got_tv->vval.v_dict != NULL)
+			dict_free(got_tv->vval.v_dict);
+		exp_tv->vval.v_dict = NULL;
+		got_tv->vval.v_dict = NULL;
 		return;
+	    }
 
 	    todo = (int)exp_d->dv_hashtab.ht_used;
 	    FOR_ALL_HASHTAB_ITEMS(&exp_d->dv_hashtab, hi, todo)
