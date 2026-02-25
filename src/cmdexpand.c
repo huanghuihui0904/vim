@@ -3514,7 +3514,8 @@ ExpandFromContext(
     if (!fuzzy)
     {
 	regmatch.regprog = vim_regcomp(pat, magic_isset() ? RE_MAGIC : 0);
-	if (regmatch.regprog == NULL){
+	if (regmatch.regprog == NULL)
+	{
 	    vim_free(tofree);
 	    return FAIL;
 	}
