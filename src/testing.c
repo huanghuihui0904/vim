@@ -189,11 +189,9 @@ fill_assert_error(
 	    got_tv->vval.v_dict = dict_alloc();
 	    if (exp_tv->vval.v_dict == NULL || got_tv->vval.v_dict == NULL)
 	    {
-		if (exp_tv->vval.v_dict != NULL)
-			dict_free(exp_tv->vval.v_dict);
-		if (got_tv->vval.v_dict != NULL)
-			dict_free(got_tv->vval.v_dict);
+		dict_unref(exp_tv->vval.v_dict);
 		exp_tv->vval.v_dict = NULL;
+		dict_unref(got_tv->vval.v_dict);
 		got_tv->vval.v_dict = NULL;
 		return;
 	    }
